@@ -1,0 +1,388 @@
+{
+  "info": {
+    "name": "ActividadClase - Gestor de Proyectos API",
+    "_postman_id": "actividadclase-collection",
+    "description": "Colección generada automáticamente con los endpoints del contrato.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Projects",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/projects",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "projects"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Project by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/projects/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "projects",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Project",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/projects",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "projects"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Mint\",\n  \"description\": \"App Dental\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Update Project",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/projects/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "projects",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Nuevo nombre\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Delete Project",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/projects/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "projects",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/tasks",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Task by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/tasks/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/tasks",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Diseñar UI\",\n  \"description\": \"...\",\n  \"projectId\": 1\n}"
+        }
+      }
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/tasks/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"done\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Delete Task",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/tasks/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List People",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/people",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "people"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Person by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/people/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "people",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Person",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/people",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "people"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"James\",\n  \"email\": \"j@correo.com\",\n  \"role\": \"Dev\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Update Person",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/people/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "people",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"QA\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Delete Person",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/people/:id",
+          "host": [
+            "http://localhost:3000"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "people",
+            ":id"
+          ]
+        }
+      }
+    }
+  ]
+}
