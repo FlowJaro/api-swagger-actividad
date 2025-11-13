@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Diseñar UI",
+    "description": "Pantallas principales",
+    "projectId": 1,
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "title": "Conectar API",
+    "description": "Endpoints CRUD",
+    "projectId": 2,
+    "status": "done"
+  }
+]
