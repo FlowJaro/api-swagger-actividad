@@ -1,21 +1,43 @@
-
 /*
   server.js
   Archivo principal del servidor Express.
   Configura middlewares, rutas y lectura/escritura simple en archivos JSON.
 */
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
 
 const app = express();
 const PORT = 3000;
 
+// Swagger config
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "API Actividad Clase",
+      version: "1.0.0",
+      description: "Documentación de API CRUD para Projects, Tasks y People"
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+        description: "Servidor local"
+      }
+    ]
+  },
+  apis: ["./routes/*.js"], // ← LEERÁ DOCUMENTACIÓN DE LAS RUTAS
+};
+
+const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
 // Middlewares
-app.use(cors()); // Permite solicitudes desde otros orígenes (útil para Postman / front-end)
-app.use(express.json()); // Parsear JSON en el body de las peticiones
+app.use(cors());
+app.use(express.json());
 
 // Rutas
 const projectsRouter = require('./routes/projects');
@@ -34,4 +56,5 @@ app.get('/', (req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Swagger disponible en http://localhost:${PORT}/api-docs`);
 });

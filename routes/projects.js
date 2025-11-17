@@ -1,4 +1,3 @@
-
 /*
   routes/projects.js
   Rutas CRUD para Projects.
@@ -11,13 +10,41 @@ const { readData, writeData } = require('./helper');
 
 const FILE = 'projects.json';
 
-// GET / -> listar todos los proyectos
+/**
+ * @openapi
+ * /api/v1/projects:
+ *   get:
+ *     tags:
+ *       - Projects
+ *     summary: Listar todos los proyectos
+ *     responses:
+ *       200:
+ *         description: Lista de proyectos
+ */
 router.get('/', (req, res) => {
   const projects = readData(FILE);
   res.json(projects);
 });
 
-// GET /:id -> obtener un proyecto por id
+/**
+ * @openapi
+ * /api/v1/projects/{id}:
+ *   get:
+ *     tags:
+ *       - Projects
+ *     summary: Obtener proyecto por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Proyecto encontrado
+ *       404:
+ *         description: Proyecto no encontrado
+ */
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const projects = readData(FILE);
@@ -26,7 +53,28 @@ router.get('/:id', (req, res) => {
   res.json(project);
 });
 
-// POST / -> crear nuevo proyecto
+/**
+ * @openapi
+ * /api/v1/projects:
+ *   post:
+ *     tags:
+ *       - Projects
+ *     summary: Crear nuevo proyecto
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Proyecto creado
+ */
 router.post('/', (req, res) => {
   const projects = readData(FILE);
   const { name, description } = req.body;
@@ -37,7 +85,29 @@ router.post('/', (req, res) => {
   res.status(201).json({ message: 'Proyecto creado', project: newProject });
 });
 
-// PUT /:id -> actualizar un proyecto
+/**
+ * @openapi
+ * /api/v1/projects/{id}:
+ *   put:
+ *     tags:
+ *       - Projects
+ *     summary: Actualizar proyecto por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Proyecto actualizado
+ */
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const projects = readData(FILE);
@@ -49,7 +119,23 @@ router.put('/:id', (req, res) => {
   res.json({ message: 'Proyecto actualizado', project: updated });
 });
 
-// DELETE /:id -> eliminar un proyecto
+/**
+ * @openapi
+ * /api/v1/projects/{id}:
+ *   delete:
+ *     tags:
+ *       - Projects
+ *     summary: Eliminar proyecto por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Proyecto eliminado
+ */
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   let projects = readData(FILE);

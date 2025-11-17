@@ -1,4 +1,3 @@
-
 /*
   routes/people.js
   Rutas CRUD para People.
@@ -11,13 +10,41 @@ const { readData, writeData } = require('./helper');
 
 const FILE = 'people.json';
 
-// GET / -> listar todas las personas
+/**
+ * @openapi
+ * /api/v1/people:
+ *   get:
+ *     tags:
+ *       - People
+ *     summary: Obtener todas las personas
+ *     responses:
+ *       200:
+ *         description: Lista de personas
+ */
 router.get('/', (req, res) => {
   const people = readData(FILE);
   res.json(people);
 });
 
-// GET /:id -> obtener persona por id
+/**
+ * @openapi
+ * /api/v1/people/{id}:
+ *   get:
+ *     tags:
+ *       - People
+ *     summary: Obtener persona por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Persona encontrada
+ *       404:
+ *         description: Persona no encontrada
+ */
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const people = readData(FILE);
@@ -26,7 +53,30 @@ router.get('/:id', (req, res) => {
   res.json(person);
 });
 
-// POST / -> crear persona
+/**
+ * @openapi
+ * /api/v1/people:
+ *   post:
+ *     tags:
+ *       - People
+ *     summary: Crear una nueva persona
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Persona creada
+ */
 router.post('/', (req, res) => {
   const people = readData(FILE);
   const { name, email, role } = req.body;
@@ -37,7 +87,29 @@ router.post('/', (req, res) => {
   res.status(201).json({ message: 'Persona creada', person: newPerson });
 });
 
-// PUT /:id -> actualizar persona
+/**
+ * @openapi
+ * /api/v1/people/{id}:
+ *   put:
+ *     tags:
+ *       - People
+ *     summary: Actualizar persona por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Persona actualizada
+ */
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const people = readData(FILE);
@@ -49,7 +121,23 @@ router.put('/:id', (req, res) => {
   res.json({ message: 'Persona actualizada', person: updated });
 });
 
-// DELETE /:id -> eliminar persona
+/**
+ * @openapi
+ * /api/v1/people/{id}:
+ *   delete:
+ *     tags:
+ *       - People
+ *     summary: Eliminar persona por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Persona eliminada
+ */
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   let people = readData(FILE);

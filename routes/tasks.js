@@ -1,4 +1,3 @@
-
 /*
   routes/tasks.js
   Rutas CRUD para Tasks.
@@ -11,13 +10,41 @@ const { readData, writeData } = require('./helper');
 
 const FILE = 'tasks.json';
 
-// GET / -> listar todas las tareas
+/**
+ * @openapi
+ * /api/v1/tasks:
+ *   get:
+ *     tags:
+ *       - Tasks
+ *     summary: Listar todas las tareas
+ *     responses:
+ *       200:
+ *         description: Lista de tareas
+ */
 router.get('/', (req, res) => {
   const tasks = readData(FILE);
   res.json(tasks);
 });
 
-// GET /:id -> obtener tarea por id
+/**
+ * @openapi
+ * /api/v1/tasks/{id}:
+ *   get:
+ *     tags:
+ *       - Tasks
+ *     summary: Obtener tarea por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Tarea encontrada
+ *       404:
+ *         description: Tarea no encontrada
+ */
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const tasks = readData(FILE);
@@ -26,7 +53,32 @@ router.get('/:id', (req, res) => {
   res.json(task);
 });
 
-// POST / -> crear nueva tarea
+/**
+ * @openapi
+ * /api/v1/tasks:
+ *   post:
+ *     tags:
+ *       - Tasks
+ *     summary: Crear una tarea
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               projectId:
+ *                 type: integer
+ *               status:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Tarea creada
+ */
 router.post('/', (req, res) => {
   const tasks = readData(FILE);
   const { title, description, projectId, status } = req.body;
@@ -37,7 +89,29 @@ router.post('/', (req, res) => {
   res.status(201).json({ message: 'Tarea creada', task: newTask });
 });
 
-// PUT /:id -> actualizar tarea
+/**
+ * @openapi
+ * /api/v1/tasks/{id}:
+ *   put:
+ *     tags:
+ *       - Tasks
+ *     summary: Actualizar tarea por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Tarea actualizada
+ */
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const tasks = readData(FILE);
@@ -49,7 +123,23 @@ router.put('/:id', (req, res) => {
   res.json({ message: 'Tarea actualizada', task: updated });
 });
 
-// DELETE /:id -> eliminar tarea
+/**
+ * @openapi
+ * /api/v1/tasks/{id}:
+ *   delete:
+ *     tags:
+ *       - Tasks
+ *     summary: Eliminar tarea por ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Tarea eliminada
+ */
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   let tasks = readData(FILE);
